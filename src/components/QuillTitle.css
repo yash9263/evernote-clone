@@ -1,0 +1,19 @@
+.title-container {
+  background: var(--accent);
+  margin: 0;
+  padding: 4px 8px;
+}
+.title-input {
+  background: inherit;
+  color: white;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  font-size: 1.2rem;
+  width: 40vw;
+  padding: 5px 8px;
+}
+
+.title-input::placeholder {
+  color: whitesmoke;
+}

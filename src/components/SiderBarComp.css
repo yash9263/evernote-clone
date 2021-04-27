@@ -1,0 +1,5 @@
+.sidebar-container {
+  width: 45vw;
+  max-width: 260px;
+  overflow-y: scroll;
+}

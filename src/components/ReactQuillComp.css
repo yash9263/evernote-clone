@@ -1,0 +1,9 @@
+.quillcomp-container {
+  width: 100%;
+}
+.quill {
+  height: 100%;
+}
+.ql-container {
+  overflow-y: scroll;
+}
