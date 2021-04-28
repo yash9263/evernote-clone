@@ -1,0 +1,13 @@
+.notes-container {
+  padding: 4px 6px;
+}
+.note {
+}
+.note:hover {
+  background: var(--gra);
+  cursor: pointer;
+}
+.note-title {
+}
+.note-body {
+}

@@ -7,11 +7,12 @@ import ReactQuillComp from './components/ReactQuillComp';
 import SiderBarComp from './components/SiderBarComp';
 
 function App() {
-  
+  const [selectedNote, setSelectedNote] = useState({});
+  console.log(selectedNote);
   return (
     <div className="app-container">
-      <SiderBarComp />
-      <ReactQuillComp />
+      <SiderBarComp setSelectedNote={setSelectedNote} />
+      <ReactQuillComp selectedNote={selectedNote}/>
     </div>
   );
 }
