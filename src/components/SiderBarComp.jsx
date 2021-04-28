@@ -24,7 +24,7 @@ export default function SiderBarComp({
         setAddingNote={setAddingNote}
         newNote={newNote}
       />
-      <ul>
+      <ul className="notes-container">
         {notes.map((note, index) => {
           return (
             <div key={index}>

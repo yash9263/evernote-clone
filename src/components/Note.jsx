@@ -26,11 +26,13 @@ export default function Note({
       selected={selectedNoteIndex === index}
       onClick={() => selectThisNote(note, index)}
     >
-      <div className="note-title">Title: {note.title}</div>
+      <div className="note-title">{note.title}</div>
       <div className="note-body">
-        Body: {removeHTML(note.body.substring(0, 30)) + "..."}
+        {removeHTML(note.body.substring(0, 20)) + "..."}
       </div>
-      <button onClick={() => deleteThisNote(note)}>delete</button>
+      <button className="delete-btn" onClick={() => deleteThisNote(note)}>
+        delete
+      </button>
     </li>
   );
 }

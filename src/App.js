@@ -21,11 +21,13 @@ function App() {
   };
 
   const noteUpdate = (id, noteObj) => {
-    db.collection("notes").doc(id).update({
-      title: noteObj.title,
-      body: noteObj.body,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    });
+    if (id) {
+      db.collection("notes").doc(id).update({
+        title: noteObj.title,
+        body: noteObj.body,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    }
   };
 
   const newNote = async (title) => {

@@ -1,13 +1,33 @@
-.notes-container {
-  padding: 4px 6px;
-}
 .note {
+  position: relative;
+  padding: 4px 8px;
 }
 .note:hover {
   background: var(--gra);
   cursor: pointer;
 }
 .note-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  /* padding-left: 4px; */
+  padding-bottom: 2px;
 }
 .note-body {
+  font-size: 0.75rem;
+  padding-left: 8px;
+  padding-bottom: 2px;
+}
+.delete-btn {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  border: none;
+  margin-right: 4px;
+  padding: 4px 9px;
+  /* bottom: 0; */
+}
+
+.delete-btn:hover {
+  background-color: red;
+  cursor: grab;
 }

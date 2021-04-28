@@ -3,7 +3,7 @@
   --primary: #325288;
   --cream: #f5cebe;
   --gra: #eeeeee;
-  height: 100%;
+  box-sizing: border-box;
 }
 body {
   margin: 0;
