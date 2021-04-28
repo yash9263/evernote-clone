@@ -1,43 +1,43 @@
 import React, { useState } from "react";
 import "./CreateNote.css";
-import firebase from "firebase/app";
-import { db } from "../firebase-config";
 
-export default function CreateNote() {
-  const [title, setTitle] = useState("");
-  const [id, setId] = useState(null);
-  const [showNote, setShowNote] = useState(false);
-
-  const changeHandler = (event) => {
-    setTitle(event.target.value);
+export default function CreateNote({
+  title,
+  setTitle,
+  addingNote,
+  setAddingNote,
+  newNote,
+}) {
+  const newNoteBtnClick = () => {
+    setTitle(title);
+    setAddingNote(!addingNote);
   };
 
-  const addNewNote = () => {
-    db.collection("notes")
-      .add({
-        title: title,
-        body: "",
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      })
-      .then((docRef) => {
-        console.log("Document written with Id: ", docRef.id);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    console.log(id);
+  const updateTitle = (text) => {
+    setTitle(text);
   };
+
+  const createNote = () => {
+    newNote(title);
+    setTitle("");
+    setAddingNote(false);
+  };
+
   return (
     <div className="createnote-container">
-      <button onClick={() => setShowNote(!showNote)}>New Note</button>
-      {showNote && (
+      <button onClick={newNoteBtnClick}>
+        {addingNote ? "Cancel" : "New Note"}
+      </button>
+      {addingNote && (
         <div>
           <input
+            type="text"
             placeholder="Enter Title"
-            onChange={changeHandler}
+            onChange={(e) => setTitle(e.target.value)}
+            onKeyUp={(e) => updateTitle(e.target.value)}
             value={title}
           />
-          <button onClick={title.length > 0 ? addNewNote : null}>
+          <button onClick={title.length > 0 ? createNote : null}>
             Create Note
           </button>
         </div>

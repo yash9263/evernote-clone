@@ -1,17 +1,45 @@
-import react from "react";
-import AllNotes from "./AllNotes";
+import react, { useState } from "react";
+import Note from "./Note";
 import CreateNote from "./CreateNote";
 import GetNotes from "./hooks/GetNotes";
 import "./SiderBarComp.css";
 
-export default function SiderBarComp({ setSelectedNote }) {
+export default function SiderBarComp({
+  selectedNoteIndex,
+  // notes,
+  deleteNote,
+  selectNote,
+  newNote,
+}) {
+  const [addingNote, setAddingNote] = useState(false);
+  const [title, setTitle] = useState("");
   const { notes } = GetNotes("notes");
-  // console.log(notes);
 
   return (
     <div className="sidebar-container">
-      <CreateNote />
-      <AllNotes notes={notes} setSelectedNote={setSelectedNote} />
+      <CreateNote
+        title={title}
+        setTitle={setTitle}
+        addingNote={addingNote}
+        setAddingNote={setAddingNote}
+        newNote={newNote}
+      />
+      <ul>
+        {notes.map((note, index) => {
+          return (
+            <div key={index}>
+              <Note
+                note={note}
+                index={index}
+                selectedNoteIndex={selectedNoteIndex}
+                selectNote={selectNote}
+                deleteNote={deleteNote}
+              />
+              <hr />
+            </div>
+          );
+        })}
+      </ul>
     </div>
   );
 }

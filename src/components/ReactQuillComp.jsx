@@ -3,47 +3,39 @@ import ReactQuill from "react-quill";
 import QuillTitle from "./QuillTitle";
 import "./ReactQuillComp.css";
 import debounce from "../helper";
-import firebase from "firebase/app";
-import { db } from "../firebase-config";
 
-export default function ReactQuillComp({ selectedNote }) {
-  const [text, setText] = useState("");
+export default function ReactQuillComp({ selectedNote, noteUpdate }) {
+  const [id, setId] = useState("");
   const [title, setTitle] = useState("");
-  const handleChange = (value) => {
-    setText(value);
-    console.log(text);
-    update();
-  };
+  const [text, setText] = useState("");
 
   useEffect(() => {
     setText(selectedNote.body);
+    setTitle(selectedNote.title);
+    setId(selectedNote.id);
   }, [selectedNote]);
 
-  const update = debounce(() => updateFirestore(selectedNote.id, title, text));
-
-  const updateFirestore = (id, title, body) => {
-    db.collection("notes").doc(id).update({
-      title: title,
-      body: text,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    });
+  const updateBody = async (value) => {
+    await setText(value);
+    update();
   };
+
+  const updateTitle = async (txt) => {
+    await setTitle(txt);
+    update();
+  };
+
+  const update = debounce(() => {
+    noteUpdate(id, { title: title, body: text });
+  }, 1500);
+
   return (
     <div
       className="quillcomp-container"
       style={{ height: "100%", boxSizing: "border-box" }}
     >
-      <QuillTitle
-        noteTitle={selectedNote.title}
-        title={title}
-        setTitle={setTitle}
-        update={update}
-      />
-      <ReactQuill
-        value={text ? text : ""}
-        onChange={handleChange}
-        theme="snow"
-      />
+      <QuillTitle title={title} updateTitle={updateTitle} />
+      <ReactQuill value={text} onChange={updateBody} theme="snow" />
     </div>
   );
 }
