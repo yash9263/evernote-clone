@@ -1,8 +1,11 @@
 .sidebar-container {
   width: 45vw;
   max-width: 260px;
-  overflow-y: scroll;
 }
 .notes-container {
   padding: 0 6px;
+  overflow-y: scroll;
+  height: 87vh;
+}
+.all-notes {
 }

@@ -4,7 +4,7 @@
 .quill {
   display: flex;
   flex-direction: column;
-  height: 93vh;
+  height: 86vh;
 }
 .ql-container {
   box-sizing: border-box;

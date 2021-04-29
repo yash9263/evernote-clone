@@ -20,7 +20,7 @@ export default function Note({
   };
 
   return (
-    <li
+    <div
       key={index}
       className="note"
       selected={selectedNoteIndex === index}
@@ -33,6 +33,6 @@ export default function Note({
       <button className="delete-btn" onClick={() => deleteThisNote(note)}>
         delete
       </button>
-    </li>
+    </div>
   );
 }

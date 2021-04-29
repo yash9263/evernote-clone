@@ -24,10 +24,10 @@ export default function SiderBarComp({
         setAddingNote={setAddingNote}
         newNote={newNote}
       />
-      <ul className="notes-container">
+      <div className="notes-container">
         {notes.map((note, index) => {
           return (
-            <div key={index}>
+            <div key={index} className="all-notes">
               <Note
                 note={note}
                 index={index}
@@ -39,7 +39,7 @@ export default function SiderBarComp({
             </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }
