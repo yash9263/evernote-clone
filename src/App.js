@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from "react";
+import react, { createContext, useEffect, useState } from "react";
 import firebase from "firebase/app";
 import { db } from "./firebase-config";
 import "react-quill/dist/quill.snow.css";
@@ -9,6 +9,15 @@ import SiderBarComp from "./components/SiderBarComp";
 import Navbar from "./components/Navbar";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
+import ProvideAuth from "./components/hooks/ProvideAuth";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  useHistory,
+  Switch,
+} from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const [selectedNote, setSelectedNote] = useState(null);
@@ -75,28 +84,38 @@ function App() {
   // console.log(notes);
 
   return (
-    <div className="app-container">
-      <Navbar />
-      <SignUp />
-      <SignIn />
-      {/* <div className="note-container">
-        <SiderBarComp
-          selectedNoteIndex={selectedNoteIndex}
-          notes={notes}
-          deleteNote={deleteNote}
-          selectNote={selectNote}
-          newNote={newNote}
-        />
-        {selectedNote ? (
-          <ReactQuillComp
-            selectedNote={selectedNote}
-            selectedNoteIndex={selectedNoteIndex}
-            notes={notes}
-            noteUpdate={noteUpdate}
-          />
-        ) : null}
-      </div> */}
-    </div>
+    <ProvideAuth>
+      <Router>
+        <div className="app-container">
+          <Navbar />
+          <PrivateRoute exact path="/protected">
+            <div className="note-container">
+              <SiderBarComp
+                selectedNoteIndex={selectedNoteIndex}
+                notes={notes}
+                deleteNote={deleteNote}
+                selectNote={selectNote}
+                newNote={newNote}
+              />
+              {selectedNote ? (
+                <ReactQuillComp
+                  selectedNote={selectedNote}
+                  selectedNoteIndex={selectedNoteIndex}
+                  notes={notes}
+                  noteUpdate={noteUpdate}
+                />
+              ) : null}
+            </div>
+          </PrivateRoute>
+          <Route path="/signUp">
+            <SignUp />
+          </Route>
+          <Route path="/signIn">
+            <SignIn />
+          </Route>
+        </div>
+      </Router>
+    </ProvideAuth>
   );
 }
 

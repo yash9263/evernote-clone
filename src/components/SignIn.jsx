@@ -1,11 +1,16 @@
 import react, { useState } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
+import { useHistory, useLocation } from "react-router-dom";
 
 export default function SignIn() {
+  const history = useHistory();
+  const location = useLocation();
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
+
+  let { from } = location.state || { from: { pathname: "/protected" } };
 
   function changeHadler(event) {
     const type = event.currentTarget.name;
@@ -23,10 +28,13 @@ export default function SignIn() {
         firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
+          .then(() => {
+            history.replace(from);
+          })
           .catch((error) => {
             setError(error.message);
           });
-        console.log("signed in");
+        // console.log("signed in");
       } else {
         setError("one or more field is/are missing");
       }

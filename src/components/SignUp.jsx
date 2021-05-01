@@ -26,11 +26,9 @@ export default function SignUp() {
 
   const SignUpWithEmail = (event) => {
     event.preventDefault();
-    console.log(userName, email, password);
+    // console.log(userName, email, password);
     if (userName && email && password) {
-      console.log("everythings fine");
       if (userName.length > 0 && password.length > 0 && email.length > 0) {
-        console.log("all is good");
         firebase
           .auth()
           .createUserWithEmailAndPassword(email, password)
@@ -49,7 +47,7 @@ export default function SignUp() {
                   createdAt: createdAt,
                 });
                 setError(null);
-                console.log("user signedup with uid: ", useruid);
+                // console.log("user signedup with uid: ", useruid);
               });
           })
           .catch((error) => {
