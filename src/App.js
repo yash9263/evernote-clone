@@ -7,6 +7,8 @@ import GetNotes from "./components/hooks/GetNotes";
 import ReactQuillComp from "./components/ReactQuillComp";
 import SiderBarComp from "./components/SiderBarComp";
 import Navbar from "./components/Navbar";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
 
 function App() {
   const [selectedNote, setSelectedNote] = useState(null);
@@ -75,7 +77,9 @@ function App() {
   return (
     <div className="app-container">
       <Navbar />
-      <div className="note-container">
+      <SignUp />
+      <SignIn />
+      {/* <div className="note-container">
         <SiderBarComp
           selectedNoteIndex={selectedNoteIndex}
           notes={notes}
@@ -91,7 +95,7 @@ function App() {
             noteUpdate={noteUpdate}
           />
         ) : null}
-      </div>
+      </div> */}
     </div>
   );
 }
