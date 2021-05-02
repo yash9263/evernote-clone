@@ -1,10 +1,10 @@
 import react, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import { Redirect } from "react-router";
-import useAuth from "../useAuth";
+import useAuth, { getUser } from "../useAuth";
 
 export default function PrivateRoute({ children, loading, ...rest }) {
-  let auth = useAuth();
+  let auth = getUser();
   useEffect(() => {}, [auth]);
   return (
     <Route

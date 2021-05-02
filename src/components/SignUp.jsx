@@ -2,12 +2,17 @@ import react, { useState } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { db } from "../firebase-config";
+import { useHistory, useLocation, Link } from "react-router-dom";
 
 export default function SignUp() {
+  const history = useHistory();
+  const location = useLocation();
   const [userName, setUserName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
+
+  let { from } = location.state || { from: { pathname: "/home" } };
 
   function nameChangeHandler(event) {
     setUserName(event.target.value);
@@ -33,6 +38,7 @@ export default function SignUp() {
           .auth()
           .createUserWithEmailAndPassword(email, password)
           .then((userCredential) => {
+            history.replace(from);
             userCredential.user
               .updateProfile({
                 displayName: userName,
@@ -130,6 +136,7 @@ export default function SignUp() {
           </button>
         </div>
       </form>
+      <Link to="signIn">Already have a account</Link>
       {/* <button>Sign up using google</button> */}
     </div>
   );
