@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { Redirect } from "react-router";
 import useAuth from "../useAuth";
 
-export default function PrivateRoute({ children, ...rest }) {
+export default function PrivateRoute({ children, loading, ...rest }) {
   let auth = useAuth();
   useEffect(() => {}, [auth]);
   return (
@@ -13,7 +13,7 @@ export default function PrivateRoute({ children, ...rest }) {
         auth ? (
           children
         ) : (
-          <Redirect to={{ pathname: "/signIn", state: { from: location } }} />
+          <Redirect to={{ pathname: "/signin", state: { from: location } }} />
         )
       }
     />

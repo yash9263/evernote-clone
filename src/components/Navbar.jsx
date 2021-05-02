@@ -40,7 +40,7 @@ function Navbar() {
         {user ? (
           <React.Fragment>
             <li>
-              <Link to="/protected">Home</Link>
+              <Link to="/home">Home</Link>
             </li>
             <li className="mr-6">
               <button

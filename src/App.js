@@ -88,7 +88,7 @@ function App() {
       <Router>
         <div className="app-container">
           <Navbar />
-          <PrivateRoute exact path="/protected">
+          <PrivateRoute exact path="/home">
             <div className="note-container">
               <SiderBarComp
                 selectedNoteIndex={selectedNoteIndex}

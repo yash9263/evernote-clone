@@ -10,7 +10,7 @@ export default function SignIn() {
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
 
-  let { from } = location.state || { from: { pathname: "/protected" } };
+  let { from } = location.state || { from: { pathname: "/home" } };
 
   function changeHadler(event) {
     const type = event.currentTarget.name;
