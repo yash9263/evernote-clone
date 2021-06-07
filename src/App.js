@@ -74,7 +74,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="note-container">
         <SiderBarComp
           selectedNoteIndex={selectedNoteIndex}
